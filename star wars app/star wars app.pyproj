@@ -29,11 +29,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="runserver.py" />
+    <Compile Include="star_wars_app\models\character.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="star_wars_app\__init__.py" />
     <Compile Include="star_wars_app\views.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="star_wars_app\" />
+    <Folder Include="star_wars_app\models\" />
     <Folder Include="star_wars_app\static\" />
     <Folder Include="star_wars_app\static\content\" />
     <Folder Include="star_wars_app\static\fonts\" />
