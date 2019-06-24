@@ -4,5 +4,12 @@
 
 <h2>All star wars characters</h2>
 
+ {% for value in characters %}
+<div>
+    <ul>
+        <li><a href="{{ url_for('getsingleCharacterInfo',character=value.url) }}"> {{ value }}</a></li>
+    </ul>
+</div>
+  {% endfor %}
 
 {% endblock %}

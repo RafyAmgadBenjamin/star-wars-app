@@ -68,6 +68,7 @@
     <Content Include="star_wars_app\templates\contact.html" />
     <Content Include="star_wars_app\templates\index.html" />
     <Content Include="star_wars_app\templates\layout.html" />
+    <Content Include="star_wars_app\templates\singleCharacter.html" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
