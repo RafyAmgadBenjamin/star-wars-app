@@ -64,7 +64,7 @@
     <Content Include="star_wars_app\static\scripts\respond.js" />
     <Content Include="star_wars_app\static\scripts\respond.min.js" />
     <Content Include="star_wars_app\static\scripts\_references.js" />
-    <Content Include="star_wars_app\templates\about.html" />
+    <Content Include="star_wars_app\templates\characters.html" />
     <Content Include="star_wars_app\templates\contact.html" />
     <Content Include="star_wars_app\templates\index.html" />
     <Content Include="star_wars_app\templates\layout.html" />
