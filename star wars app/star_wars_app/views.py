@@ -6,8 +6,9 @@ from datetime import datetime
 from flask import render_template
 from star_wars_app import app
 from flask import request
-import character
+#import character
 import swapi
+import json
 import requests 
 
 
@@ -53,5 +54,26 @@ def searchCharacter(name):
     #reponse = requests.get(endPointUrl)
     url = 'https://swapi.co/api/people/'
     reponse = requests.get(url, params={'search': name})
-    return reponse
+    #temp = json.loads(reponse.content, object_hook=lambda d:namedtuple('X', d.keys())(*d.values()))
+    DeserializedResponse = json.loads(reponse.content)
+    mapResponseToCharacterModel(DeserializedResponse)
+
+
+#I need to map the data to an object 
+def mapResponseToCharacterModel(characters):
+    for character in characters['results']:
+        character['name']
+        character['gender']
+        id = getIdFromUrl(character['url'])
+        getCharacterInfo(id)
+
+
+
+
+def getIdFromUrl(url):
+   return url.split('/')[-2]
+
+def getCharacterInfo(id):
+    character = swapi.get_person(id)    species = character.get_species()    films = character.get_films()    homeWorld = character.get_homeworld()
+
 
