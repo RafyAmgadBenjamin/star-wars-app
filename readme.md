@@ -32,6 +32,8 @@ This page list my contact information
 In this application I have applied testing concepts including **Unit testing**, **Integration Testing** and **Mocking Concepts**
 
 ##Getting started
-python3 star\ wars\ app/runserver.py
+```bash
+cd start\ wars\ app
 pip3 install -r requirements.txt
 python3 runserver.py
+```
