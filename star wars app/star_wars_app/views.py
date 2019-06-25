@@ -8,6 +8,7 @@ from star_wars_app.timeCal import timeCal
 from flask import render_template
 from star_wars_app import app
 from flask import request
+import Response
 import swapi
 import json
 import requests 
@@ -54,7 +55,10 @@ def getsingleCharacterInfo():
 @app.route('/api/character/<name>')
 def searchCharacter(name):
     charactersList = getCharacterDataAndMapReponse(name)
-    return json.dumps([ob.__dict__ for ob in charactersList])
+    js =json.dumps([ob.__dict__ for ob in charactersList])
+    resp = Response(charactersList, status=200, mimetype='application/json')
+    resp.headers['Link'] = 'https://swapi.co'
+    return resp
 
 def calculate_time(func):
     def calTime(*args, **kwargs):
