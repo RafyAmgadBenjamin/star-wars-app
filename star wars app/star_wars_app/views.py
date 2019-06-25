@@ -49,7 +49,7 @@ def getsingleCharacterInfo():
                            data=singleCharacter)
 
 
-@app.route('/character/<name>')
+@app.route('/api/character/<name>')
 def searchCharacter(name):
     url = 'https://swapi.co/api/people/'
     reponse = requests.get(url, params={'search': name})
