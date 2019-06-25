@@ -8,7 +8,6 @@ from star_wars_app.timeCal import timeCal
 from flask import render_template
 from star_wars_app import app
 from flask import request
-#import character
 import swapi
 import json
 import requests 
@@ -62,11 +61,8 @@ def calculate_time(func):
         # storing time before function execution
         begin = time.time()
         charactersList = func(*args, **kwargs)
+        # storing time after function execution
         end = time.time()
-        print("Total time taken in : ", func.__name__, end - begin)
-
-       
-
         timeTemp = timeCal(end - begin)
         charactersList.append(timeTemp)
         return charactersList
@@ -83,7 +79,6 @@ def getCharacterDataAndMapReponse(name):
 
 
 
-#I need to map the data to an object
 def mapResponseToCharacterModel(characters):
     charactersList = []
     for character in characters['results']:
