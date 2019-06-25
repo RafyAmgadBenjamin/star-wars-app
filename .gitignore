@@ -260,3 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 /star wars app.sln
+/star wars app/star wars app.pyproj
+/star wars app/env
