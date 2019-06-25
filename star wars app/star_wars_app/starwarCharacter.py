@@ -10,46 +10,46 @@ class starwarCharacter(object):
      self.movies = movies
 
      # getter method
-     def get_name(self): 
+    def get_name(self): 
         return self.name 
       
     # setter method
-     def set_name(self, x): 
+    def set_name(self, x): 
         self.name = x 
 
           # getter method
-     def get_gender(self): 
+    def get_gender(self): 
         return self.gender
       
     # setter method
-     def set_gender(self, x): 
+    def set_gender(self, x): 
         self.gender = x   # getter method
 
-     def get_speciesName(self): 
+    def get_speciesName(self): 
         return self.speciesName 
       
     # setter method
-     def set_speciesName(self, x): 
+    def set_speciesName(self, x): 
         self.speciesName = x  
        
         # getter method
-     def get_lifeSpan(self): 
+    def get_lifeSpan(self): 
         return self.lifeSpan 
       
     # setter method
-     def set_lifeSpan(self, x): 
+    def set_lifeSpan(self, x): 
         self.lifeSpan = x  
        
         # getter method
-     def get_homePlanetName(self): 
+    def get_homePlanetName(self): 
         return self.homePlanetName 
       
     # setter method
-     def set_homePlanetName(self, x): 
+    def set_homePlanetName(self, x): 
         self.homePlanetName = x 
 
              # getter method
-     def get_movies(self): 
+    def get_movies(self): 
         return self.movies 
       
     # setter method

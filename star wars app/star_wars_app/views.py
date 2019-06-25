@@ -3,6 +3,7 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
+from star_wars_app.starwarCharacter import starwarCharacter
 from flask import render_template
 from star_wars_app import app
 from flask import request
@@ -50,7 +51,9 @@ def getsingleCharacterInfo():
 
 @app.route('/character/<name>')
 def searchCharacter(name):
-    
+    p = starwarCharacter("rafy","male","human",120,"earth","star wars from earth")
+    p.get_name()
+   
     #endPointUrl = "https://swapi.co/api/people/?search=" + name
     #reponse = requests.get(endPointUrl)
     url = 'https://swapi.co/api/people/'
