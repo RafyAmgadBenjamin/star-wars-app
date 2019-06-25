@@ -108,7 +108,7 @@ def mapResponseToCharacterModel(characters):
 
 
 def getIdFromUrl(url):
-   return url.split('/')[-2]
+    return url.split('/')[-2]
 
 def getCharacterInfo(id):
     return swapi.get_person(id)
