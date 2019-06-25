@@ -51,25 +51,28 @@ def getsingleCharacterInfo():
 
 @app.route('/character/<name>')
 def searchCharacter(name):
-    p = starwarCharacter("rafy","male","human",120,"earth","star wars from earth")
-    p.get_name()
-   
-    #endPointUrl = "https://swapi.co/api/people/?search=" + name
-    #reponse = requests.get(endPointUrl)
     url = 'https://swapi.co/api/people/'
     reponse = requests.get(url, params={'search': name})
-    #temp = json.loads(reponse.content, object_hook=lambda d:namedtuple('X', d.keys())(*d.values()))
     DeserializedResponse = json.loads(reponse.content)
-    mapResponseToCharacterModel(DeserializedResponse)
-
+    charactersList = mapResponseToCharacterModel(DeserializedResponse)
+    return json.dumps([ob.__dict__ for ob in charactersList])
 
 #I need to map the data to an object 
 def mapResponseToCharacterModel(characters):
+    charactersList = []
     for character in characters['results']:
-        character['name']
-        character['gender']
+        name = character['name']
+        gender = character['gender']
         id = getIdFromUrl(character['url'])
-        getCharacterInfo(id)
+        singleCharacter =  getCharacterInfo(id)
+        species = getCharacterSpecies(singleCharacter)
+        averageLifeSpan = getAverageLifeSpan(singleCharacter)
+        films = getCharacterFilms(singleCharacter)
+        homeWorld = getCharacterHomeworld(singleCharacter)
+        characterTemp = starwarCharacter(name,gender,"human",averageLifeSpan,homeWorld,films)
+        charactersList.append(characterTemp)
+        del characterTemp
+    return charactersList
 
 
 
@@ -78,11 +81,23 @@ def getIdFromUrl(url):
    return url.split('/')[-2]
 
 def getCharacterInfo(id):
-    character = swapi.get_person(id)
-    species = character.get_species()
+    return swapi.get_person(id)
+   
+def getCharacterFilms(character):
     films = character.get_films()
-    homeWorld = character.get_homeworld()
+    filmsNames = []
+    for film in films.items:
+        filmsNames.append(film.title)
+    return filmsNames
 
 
 
+def getCharacterSpecies(character):
+     return character.get_species().items[0].name
+
+def getCharacterHomeworld(character):
+     return character.get_homeworld().name
+
+def getAverageLifeSpan(character):
+    return character.get_species().items[0].average_lifespan
 
