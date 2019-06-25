@@ -5,7 +5,7 @@ class TestIntegrations(unittest.TestCase):
     def setUp(self):
         self.app= app.test_client()
 
-    def test_searchCharacterSuccessScenario(self):
+    def test_searchCharacter_getOkResponse(self):
         response = self.app.get('/api/character/luke')
         self.assertEqual(response._status_code,200)
 
