@@ -55,6 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
+    <Content Include="star_wars_app\readme.md">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="star_wars_app\static\content\bootstrap.css" />
     <Content Include="star_wars_app\static\content\bootstrap.min.css" />
     <Content Include="star_wars_app\static\content\site.css" />
