@@ -50,6 +50,7 @@ def getsingleCharacterInfo():
 
 @app.route('/character/<name>')
 def searchCharacter(name):
+    
     #endPointUrl = "https://swapi.co/api/people/?search=" + name
     #reponse = requests.get(endPointUrl)
     url = 'https://swapi.co/api/people/'
@@ -74,6 +75,11 @@ def getIdFromUrl(url):
    return url.split('/')[-2]
 
 def getCharacterInfo(id):
-    character = swapi.get_person(id)    species = character.get_species()    films = character.get_films()    homeWorld = character.get_homeworld()
+    character = swapi.get_person(id)
+    species = character.get_species()
+    films = character.get_films()
+    homeWorld = character.get_homeworld()
+
+
 
 

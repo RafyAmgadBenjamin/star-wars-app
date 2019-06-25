@@ -29,7 +29,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="runserver.py" />
-    <Compile Include="star_wars_app\models\character.py">
+    <Compile Include="star_wars_app\models\starwarCharacter.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="star_wars_app\__init__.py" />

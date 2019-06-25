@@ -1,4 +1,4 @@
-class character(object):
+class starwarCharacter(object):
     """description of class"""
 
     def __init__(self, name, gender,speciesName,lifeSpan,homePlanetName,movies):
