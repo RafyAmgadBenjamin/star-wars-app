@@ -44,11 +44,12 @@ def characters():
 @app.route('/single-character')
 def getsingleCharacterInfo():
 
-    singleCharacter = request.args.get('character', None)
-    
-    return render_template('character.html',
+    characterUrl = request.args.get('character', None)
+    characterId = getIdFromUrl(characterUrl)
+    characterInfo = getCharacterInfo(characterId)
+    return render_template('singleCharacter.html',
                            title = "star wars character",
-                           data=singleCharacter)
+                           characterInfo=characterInfo)
 
 
 @app.route('/api/character/<name>')
@@ -61,7 +62,7 @@ def searchCharacter(name):
     resp.headers['Link'] = 'https://swapi.co'
     return resp
 
-def calculate_time(func):
+def calculateTime(func):
     def calTime(*args, **kwargs):
         # storing time before function execution
         begin = time.time()
@@ -73,7 +74,7 @@ def calculate_time(func):
         return response
     return calTime 
 
-@calculate_time
+@calculateTime
 def getCharacterDataAndMapResponse(name):
     response = {"data":"","response":""}
     url = 'https://swapi.co/api/people/'
