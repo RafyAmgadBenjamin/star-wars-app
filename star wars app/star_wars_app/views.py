@@ -4,6 +4,7 @@ Routes and views for the flask application.
 
 from datetime import datetime
 from star_wars_app.starwarCharacter import starwarCharacter
+from star_wars_app.timeCal import timeCal
 from flask import render_template
 from star_wars_app import app
 from flask import request
@@ -11,6 +12,8 @@ from flask import request
 import swapi
 import json
 import requests 
+import time 
+
 
 
 @app.route('/')
@@ -51,20 +54,43 @@ def getsingleCharacterInfo():
 
 @app.route('/api/character/<name>')
 def searchCharacter(name):
+    charactersList = getCharacterDataAndMapReponse(name)
+    return json.dumps([ob.__dict__ for ob in charactersList])
+
+def calculate_time(func):
+    def calTime(*args, **kwargs):
+        # storing time before function execution
+        begin = time.time()
+        charactersList = func(*args, **kwargs)
+        end = time.time()
+        print("Total time taken in : ", func.__name__, end - begin)
+
+       
+
+        timeTemp = timeCal(end - begin)
+        charactersList.append(timeTemp)
+        return charactersList
+    return calTime 
+
+@calculate_time
+def getCharacterDataAndMapReponse(name):
     url = 'https://swapi.co/api/people/'
     reponse = requests.get(url, params={'search': name})
     DeserializedResponse = json.loads(reponse.content)
     charactersList = mapResponseToCharacterModel(DeserializedResponse)
-    return json.dumps([ob.__dict__ for ob in charactersList])
+    return charactersList
 
-#I need to map the data to an object 
+
+
+
+#I need to map the data to an object
 def mapResponseToCharacterModel(characters):
     charactersList = []
     for character in characters['results']:
         name = character['name']
         gender = character['gender']
         id = getIdFromUrl(character['url'])
-        singleCharacter =  getCharacterInfo(id)
+        singleCharacter = getCharacterInfo(id)
         species = getCharacterSpecies(singleCharacter)
         averageLifeSpan = getAverageLifeSpan(singleCharacter)
         films = getCharacterFilms(singleCharacter)

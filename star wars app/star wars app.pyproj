@@ -32,6 +32,9 @@
     <Compile Include="star_wars_app\starwarCharacter.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="star_wars_app\timeCal.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="star_wars_app\__init__.py" />
     <Compile Include="star_wars_app\views.py" />
   </ItemGroup>
