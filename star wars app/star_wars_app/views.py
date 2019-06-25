@@ -53,8 +53,10 @@ def getsingleCharacterInfo():
 
 @app.route('/api/character/<name>')
 def searchCharacter(name):
-    charactersList = getCharacterDataAndMapReponse(name)
-    js =json.dumps([ob.__dict__ for ob in charactersList])
+    response = getCharacterDataAndMapResponse(name)
+    if(response["data"]==""):
+        return response["response"]
+    js =json.dumps([ob.__dict__ for ob in response["data"]])
     resp = Response(js, status=200, mimetype='application/json')
     resp.headers['Link'] = 'https://swapi.co'
     return resp
@@ -63,21 +65,24 @@ def calculate_time(func):
     def calTime(*args, **kwargs):
         # storing time before function execution
         begin = time.time()
-        charactersList = func(*args, **kwargs)
+        response = func(*args, **kwargs)
         # storing time after function execution
         end = time.time()
         timeTemp = timeCal(end - begin)
-        charactersList.append(timeTemp)
-        return charactersList
+        response["data"].append(timeTemp)
+        return response
     return calTime 
 
 @calculate_time
-def getCharacterDataAndMapReponse(name):
+def getCharacterDataAndMapResponse(name):
+    response = {"data":"","response":""}
     url = 'https://swapi.co/api/people/'
-    reponse = requests.get(url, params={'search': name})
-    DeserializedResponse = json.loads(reponse.content)
-    charactersList = mapResponseToCharacterModel(DeserializedResponse)
-    return charactersList
+    response["response"] = requests.get(url, params={'search': name})
+    if(response["response"].status_code!=200):
+        return response
+    DeserializedResponse = json.loads(response["response"].content)
+    response["data"] = mapResponseToCharacterModel(DeserializedResponse)
+    return response
 
 
 
