@@ -5,10 +5,9 @@ Routes and views for the flask application.
 from datetime import datetime
 from star_wars_app.starwarCharacter import starwarCharacter
 from star_wars_app.timeCal import timeCal
-from flask import render_template
+from flask import render_template,Response
 from star_wars_app import app
 from flask import request
-import Response
 import swapi
 import json
 import requests 
@@ -56,7 +55,7 @@ def getsingleCharacterInfo():
 def searchCharacter(name):
     charactersList = getCharacterDataAndMapReponse(name)
     js =json.dumps([ob.__dict__ for ob in charactersList])
-    resp = Response(charactersList, status=200, mimetype='application/json')
+    resp = Response(js, status=200, mimetype='application/json')
     resp.headers['Link'] = 'https://swapi.co'
     return resp
 
