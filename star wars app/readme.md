@@ -6,12 +6,12 @@ This is a simple documentation for star wars application.
 -web API
 -web pages
 
-##web API:
+## web API:
 **URL**:/api/character/<name>
 **name**:Is the name of star wars character.
 This API search for all the star wars character whose name include the searched text
 
-##web pages
+## web pages
 -Home page:
 **URL:**/home
 This page contains general information about star wars movies
@@ -28,6 +28,6 @@ This page list single character general information after passing the single cha
 **URL:**/contact
 This page list my contact information
 
-##Testing
+## Testing
 In this application I have applied testing concepts including **Unit testing**, **Integration Testing** and **Mocking Concepts**
 
